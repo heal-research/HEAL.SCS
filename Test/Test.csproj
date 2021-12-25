@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SCS.NET.csproj" />
+    <ProjectReference Include="..\HEAL.SCS.csproj" />
   </ItemGroup>
 
 </Project>
