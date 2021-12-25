@@ -1,13 +1,13 @@
-= HEAL.SCS = 
+# HEAL.SCS 
 
 Provides a .NET wrapper to SCS.
 
 SCS (`splitting conic solver`) is a numerical optimization package for solving
 large-scale convex cone problems. This package includes windows binaries of SCS version is `3.0.0`.
 
-The full documentation for SCS is available at https://www.cvxgrp.org/scs/. 
+The full documentation for SCS is available at [https://www.cvxgrp.org/scs/](https://www.cvxgrp.org/scs/). 
 
-== Building ==
+## Building
 
 ```
 > git clone https://github.com/heal-research/HEAL.SCS
@@ -15,7 +15,7 @@ The full documentation for SCS is available at https://www.cvxgrp.org/scs/.
 > dotnet build
 ```
 
-== Running ==
+## Running 
 Demo:
 
 `> cd Demo`
@@ -24,7 +24,7 @@ Demo:
 Unit tests:
 `> dotnet test`
 
-== Usage example == 
+## Usage example
 ```csharp
       var settings = new ScsSettings();
       SCSWrapper.SetDefaultSettings(settings);
@@ -63,5 +63,5 @@ Unit tests:
     }
 ```
 
-== Helping out ==
+## Helping out
 We are open to pull-requests. Support for Linux would be much needed.
