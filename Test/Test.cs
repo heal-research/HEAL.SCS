@@ -1,4 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿#region License Information
+/*
+ * This file is part of HEAL.SCS which is licensed under the MIT license.
+ * See the LICENSE file in the project root for more information.
+ */
+#endregion
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SCS;
 using System;
 
