@@ -1,16 +1,15 @@
 ﻿using SCS;
 using System;
-using System.Runtime.InteropServices;
 
 namespace Demo {
   class Program {
     static void Main(string[] args) {
       SolveExample(verbose: true);
 
-      // run repeatedly to check for memory leaks (observe allocated memory in task manager)
-      for (int i = 0; i < 1000000; i++) {
-        SolveExample();
-      }
+      // // run repeatedly to check for memory leaks (observe allocated memory in task manager)
+      // for (int i = 0; i < 100000; i++) {
+      //   SolveExample();
+      // }
     }
 
     private static void SolveExample(bool verbose = false) {
