@@ -2,8 +2,8 @@
 
 Provides a .NET wrapper to SCS.
 
-SCS (`splitting conic solver`) is a numerical optimization package for solving
-large-scale convex cone problems. This package includes windows binaries of SCS version is `3.0.0`.
+SCS (splitting conic solver) is a numerical optimization package for solving
+large-scale convex cone problems. This package includes windows binaries of SCS version is 3.0.0.
 
 The full documentation for SCS is available at [https://www.cvxgrp.org/scs/](https://www.cvxgrp.org/scs/). 
 
@@ -64,7 +64,7 @@ if (0 <= SCSWrapper.Scs(data, cone, settings, out var solution, out var info)) {
 ```
 
 ## Building SCS
-Clone SCS from github and build it.
+Clone SCS from github and build it. I used [MSYS2](https://www.msys2.org/) on Windows to build the binaries. 
 ```
 git clone https://github.com/cvxgrp/scs
 cd scs
