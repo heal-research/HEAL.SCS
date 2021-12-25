@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SCS.NET": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
