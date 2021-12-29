@@ -286,7 +286,7 @@ namespace SCS {
      * @param  info  Information about the solve will be stored here.
      * @return       Flag that determines solve type (see \a glbopts.h).
      */
-    [DllImport("nativelib/libscsdir.dll", EntryPoint = "scs", CharSet = CharSet.Ansi,
+    [DllImport("libscsdir.dll", EntryPoint = "scs", CharSet = CharSet.Ansi,
                     CallingConvention = CallingConvention.Cdecl)]
     private static extern int Scs(_ScsData data, _ScsCone cone, ScsSettings settings, [In, Out] _ScsSolution solution, [In, Out] ScsInfo info); // int scs(const ScsData *d, const ScsCone *k, const ScsSettings *stgs,
                                                                                                                                                 //             ScsSolution *sol, ScsInfo *info);
@@ -316,18 +316,18 @@ namespace SCS {
      *
      * @param  stgs  Settings struct that will be populated.
      */
-    [DllImport("nativelib/libscsdir.dll", EntryPoint = "scs_set_default_settings", CharSet = CharSet.Ansi,
+    [DllImport("libscsdir.dll", EntryPoint = "scs_set_default_settings", CharSet = CharSet.Ansi,
                      CallingConvention = CallingConvention.Cdecl)]
     public static extern void SetDefaultSettings([In, Out] ScsSettings settings); // void SCS(set_default_settings)(ScsSettings *stgs);
 
-    [DllImport("nativelib/libscsdir.dll", EntryPoint = "scs_version", CharSet = CharSet.Ansi,
+    [DllImport("libscsdir.dll", EntryPoint = "scs_version", CharSet = CharSet.Ansi,
                      CallingConvention = CallingConvention.Cdecl)]
     private static extern IntPtr SCS_Version(); // const char *SCS(version)(void);
     public static string Version() {
       return Marshal.PtrToStringAnsi(SCS_Version());
     }
 
-    [DllImport("nativelib/libscsdir.dll", EntryPoint = "scs_write_data", CharSet = CharSet.Ansi,
+    [DllImport("libscsdir.dll", EntryPoint = "scs_write_data", CharSet = CharSet.Ansi,
                  CallingConvention = CallingConvention.Cdecl)]
     private static extern void WriteData(_ScsData data, _ScsCone cone, ScsSettings settings);
     public static void WriteData(ScsData data, ScsCone cone, ScsSettings settings) {
@@ -336,7 +336,7 @@ namespace SCS {
       }
     }
 
-    [DllImport("nativelib/libscsdir.dll", EntryPoint = "scs_validate_cones", CharSet = CharSet.Ansi,
+    [DllImport("libscsdir.dll", EntryPoint = "scs_validate_cones", CharSet = CharSet.Ansi,
                  CallingConvention = CallingConvention.Cdecl)]
     private static extern int ValidateCones(_ScsData data, _ScsCone cone);
     public static int ValidateCones(ScsData data, ScsCone cone) {

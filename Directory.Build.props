@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        <Authors>Gabriel Kronberger</Authors>
+        <Owners>Gabriel Kronberger; Heuristic and Evolutionary Algorithms Laboratory</Owners>
+        <Copyright>Copyright 2021 - 2022</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>http://github.com/heal-research/HEAL.SCS</PackageProjectUrl>
+        <PackageTags>Convex-optimization SCS</PackageTags>
+        <Description>
+A .NET wrapper for the splitting conic solver (SCS).
+        </Description>
+    </PropertyGroup>
+</Project>
