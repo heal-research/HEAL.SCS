@@ -10,6 +10,23 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 namespace SCS {
 
+  ///<summary>SCS returns one of the following integers</summary> 
+  public enum ScsResult {
+    SCS_INFEASIBLE_INACCURATE = -7,
+    SCS_UNBOUNDED_INACCURATE = -6,
+    SCS_SIGINT = -5,
+    SCS_FAILED = -4,
+    SCS_INDETERMINATE = -3,
+    ///<value>primal infeasible, dual unbounded</value>
+    SCS_INFEASIBLE = -2,
+    ///<value>primal unbounded, dual infeasible</value>
+    SCS_UNBOUNDED = -1,
+    ///<value>never returned, used as placeholder</value>
+    SCS_UNFINISHED = 0,
+    SCS_SOLVED = 1,
+    SCS_SOLVED_INACCURATE = 2
+  };
+
 
   [StructLayout(LayoutKind.Sequential)]
   ///<summary>
@@ -33,40 +50,41 @@ namespace SCS {
   [StructLayout(LayoutKind.Sequential)]
   ///<summary>Struct containing all settings.</summary>
   public class ScsSettings {
-    /** Whether to heuristically rescale the data before solve. */
+    ///<value>Whether to heuristically rescale the data before solve.</value>
     public int normalize;
-    /** Initial dual scaling factor (may be updated if adaptive_scale is on). */
+    ///<value>Initial dual scaling factor (may be updated if adaptive_scale is on).</value>
     public double scale;
-    /** Whether to adaptively update `scale`. */
+    ///<value>Whether to adaptively update `scale`.</value>
     public int adaptive_scale;
-    /** Primal constraint scaling factor. */
+    ///<value>Primal constraint scaling factor.</value>
     public double rho_x;
-    /** Maximum iterations to take. */
+    ///<value>Maximum iterations to take.</value>
     public int max_iters;
-    /** Absolute convergence tolerance. */
+    ///<value>Absolute convergence tolerance.</value>
     public double eps_abs;
-    /** Relative convergence tolerance. */
+    ///<value>Relative convergence tolerance.</value>
     public double eps_rel;
-    /** Infeasible convergence tolerance. */
+    ///<value>Infeasible convergence tolerance.</value>
     public double eps_infeas;
-    /** Douglas-Rachford relaxation parameter. */
+    ///<value>Douglas-Rachford relaxation parameter.</value>
     public double alpha;
-    /** Time limit in secs (can be fractional). */
+    ///<value>Time limit in secs (can be fractional).</value>
     public double time_limit_secs;
-    /** Whether to log progress to stdout. */
+    ///<value>Whether to log progress to stdout.</value>
     public int verbose;
-    /** Whether to use warm start (put initial guess in ScsSolution struct). */
+    ///<value>Whether to use warm start (put initial guess in ScsSolution struct).</value>
     public int warm_start;
-    /** Memory for acceleration. */
+    ///<value>Memory for acceleration.</value>
     public int acceleration_lookback;
-    /** Interval to apply acceleration. */
+    ///<value>Interval to apply acceleration.</value>
     public int acceleration_interval;
-    /** String, if set will dump raw prob data to this file. */
+    ///<value>String, if set will dump raw prob data to this file.</value>
     public string write_data_filename; // actually const char*
-    /** String, if set will log data to this csv file (makes SCS very slow). */
+    ///<value>String, if set will log data to this csv file (makes SCS very slow).</value>
     public string log_csv_filename; // actually const char*
   };
 
+  ///<summary>Class containing problem data.</summary> 
   public class ScsData {
     ///<value>A has `m` rows.</value>
     public int m;
@@ -126,60 +144,61 @@ namespace SCS {
   /// Check the exit flag to determine whether this contains a solution or a
   /// certificate.</summary> 
   public class ScsSolution {
-    /** Primal variable. */
+    ///<value>Primal variable.</value>
     public double[] x;
-    /** Dual variable. */
+    ///<value>Dual variable.</value>
     public double[] y;
-    /** Slack variable. */
+    ///<value>Slack variable.</value>
     public double[] s;
   };
 
 
-  /** Contains information about the solve run at termination. */
   [StructLayout(LayoutKind.Sequential)]
+  ///<summary>Contains information about the solve run at termination.</summary>
   public class ScsInfo {
-    /** Number of iterations taken. */
+    ///<value>Number of iterations taken.</value>
     public int iter;
-    /** Status string, e.g. 'solved'. */
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+    ///<value>Status string, e.g. 'solved'.</value>
     public string status; // actually char[128]
-    /** Status as int, defined in glbopts.h. */
+    ///<value>Status as int, defined in glbopts.h.</value>
     public int status_val;
-    /** Number of updates to scale. */
+    ///<value>Number of updates to scale.</value>
     public int scale_updates;
-    /** Primal objective. */
+    ///<value>Primal objective.</value>
     public double pobj;
-    /** Dual objective. */
+    ///<value>Dual objective.</value>
     public double dobj;
-    /** Primal equality residual. */
+    ///<value>Primal equality residual.</value>
     public double res_pri;
-    /** Dual equality residual. */
+    ///<value>Dual equality residual.</value>
     public double res_dual;
-    /** Duality gap. */
+    ///<value>Duality gap.</value>
     public double gap;
-    /** Infeasibility cert residual. */
+    ///<value>Infeasibility cert residual.</value>
     public double res_infeas;
-    /** Unbounded cert residual. */
+    ///<value>Unbounded cert residual.</value>
     public double res_unbdd_a;
-    /** Unbounded cert residual. */
+    ///<value>Unbounded cert residual.</value>
     public double res_unbdd_p;
-    /** Time taken for setup phase (milliseconds). */
+    ///<value>Time taken for setup phase (milliseconds).</value>
     public double setup_time;
-    /** Time taken for solve phase (milliseconds). */
+    ///<value>Time taken for solve phase (milliseconds).</value>
     public double solve_time;
-    /** Final scale parameter. */
+    ///<value>Final scale parameter.</value>
     public double scale;
-    /** Complementary slackness. */
+    ///<value>Complementary slackness.</value>
     public double comp_slack;
-    /** Number of rejected AA steps. */
+    ///<value>Number of rejected AA steps.</value>
     public int rejected_accel_steps;
-    /** Number of accepted AA steps. */
+    ///<value>Number of accepted AA steps.</value>
     public int accepted_accel_steps;
-    /** Total time (milliseconds) spent in the linear system solver. */
+    ///<value>Total time (milliseconds) spent in the linear system solver.</value>
     public double lin_sys_time;
-    /** Total time (milliseconds) spent in the cone projection. */
+    ///<value>Total time (milliseconds) spent in the cone projection.</value>
     public double cone_time;
-    /** Total time (milliseconds) spent in the acceleration routine. */
+    ///<value>Total time (milliseconds) spent in the acceleration routine.</value>
     public double accel_time;
 
     public override string ToString() {
@@ -274,23 +293,23 @@ namespace SCS {
       public int psize;
     };
 
-    /**
-     * Solve quadratic cone program defined by data in d and cone k.
-     *
-     * All the inputs must already be allocated in memory before calling.
-     *
-     * @param  d     Problem data.
-     * @param  k     Cone data.
-     * @param  stgs  SCS solver settings.
-     * @param  sol   Solution will be stored here.
-     * @param  info  Information about the solve will be stored here.
-     * @return       Flag that determines solve type (see \a glbopts.h).
-     */
     [DllImport("libscsdir.dll", EntryPoint = "scs", CharSet = CharSet.Ansi,
                     CallingConvention = CallingConvention.Cdecl)]
+    ///<summary>
+    ///Solve quadratic cone program defined by data in d and cone k.
+    ///
+    ///All the inputs must already be allocated in memory before calling.
+    ///</summary>
+    ///<param name="data">Problem data</param>
+    ///<param name="cone">Cone data</param>
+    ///<param name="settings">SCS solver settings.</param>
+    ///<param name="solution">Solution will be stored here</param>
+    ///<param name="info">Information about the solve will be stored here.</param>
+    ///<returns>Flag that determines solve type</returns>.
+    ///
     private static extern int Scs(_ScsData data, _ScsCone cone, ScsSettings settings, [In, Out] _ScsSolution solution, [In, Out] ScsInfo info); // int scs(const ScsData *d, const ScsCone *k, const ScsSettings *stgs,
                                                                                                                                                 //             ScsSolution *sol, ScsInfo *info);
-    public static int Scs(ScsData data, ScsCone cone, ScsSettings settings, out ScsSolution solution, out ScsInfo info) {
+    public static ScsResult Scs(ScsData data, ScsCone cone, ScsSettings settings, out ScsSolution solution, out ScsInfo info) {
       var n = data.n;
       var m = data.m;
       solution = new ScsSolution() { x = new double[n], y = new double[m], s = new double[m] };
@@ -301,12 +320,12 @@ namespace SCS {
         var _sol = marshaller.Marshal(solution);
         info = new ScsInfo();
         var res = Scs(_data, _cone, settings, _sol, info);
-        if (res >= 0) {
+        if (res > 0) {
           Marshal.Copy(_sol.x, solution.x, 0, n);
           Marshal.Copy(_sol.y, solution.y, 0, m);
           Marshal.Copy(_sol.s, solution.s, 0, m);
         }
-        return res;
+        return (ScsResult)res;
       }
     }
 
