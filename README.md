@@ -3,7 +3,7 @@
 Provides a .NET wrapper to SCS.
 
 SCS (splitting conic solver) is a numerical optimization package for solving
-large-scale convex cone problems. This package includes windows binaries of SCS version is 3.0.0.
+large-scale convex cone problems. This package includes windows binaries of SCS version 3.0.0.
 
 The full documentation for SCS is available at [https://www.cvxgrp.org/scs/](https://www.cvxgrp.org/scs/). 
 
