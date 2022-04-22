@@ -71,7 +71,7 @@ cd scs
 make 
 ```
 
-The native scs library can be found in the `out/` folder. Copy `libscsdir.dll` to `HEAL.SCS/nativelib`.
+The native scs library can be found in the `out/` folder. Copy `libscsdir.dll` and all other native dll files to `HEAL.SCS/nativelib`.
 
 
 ## Helping out
