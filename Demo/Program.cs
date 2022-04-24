@@ -46,7 +46,7 @@ namespace Demo {
       cone.q = new int[] { 3 };
       settings.verbose = verbose ? 1 : 0;
 
-      SCSWrapper.ValidateCones(data, cone);
+      // SCSWrapper.ValidateCones(data, cone);
       if (0 <= SCSWrapper.Scs(data, cone, settings, out var solution, out var info)) {
         if (verbose) {
           Console.WriteLine(info);

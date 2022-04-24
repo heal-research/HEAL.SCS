@@ -162,6 +162,8 @@ namespace SCS {
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
     ///<value>Status string, e.g. 'solved'.</value>
     public string status; // actually char[128]
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+    public string lin_sys_solver; // actually char[128]
     ///<value>Status as int, defined in glbopts.h.</value>
     public int status_val;
     ///<value>Number of updates to scale.</value>
@@ -355,16 +357,16 @@ namespace SCS {
       }
     }
 
-    [DllImport("libscsdir.dll", EntryPoint = "scs_validate_cones", CharSet = CharSet.Ansi,
-                 CallingConvention = CallingConvention.Cdecl)]
-    private static extern int ValidateCones(_ScsData data, _ScsCone cone);
-    public static int ValidateCones(ScsData data, ScsCone cone) {
-      using (var marshaller = new CustomMarshaller()) {
-        var _data = marshaller.Marshal(data);
-        var _cone = marshaller.Marshal(cone);
-        return ValidateCones(_data, _cone);
-      }
-    }
+    // [DllImport("libscsdir.dll", EntryPoint = "scs_validate_cones", CharSet = CharSet.Ansi,
+    //              CallingConvention = CallingConvention.Cdecl)]
+    // private static extern int ValidateCones(_ScsData data, _ScsCone cone);
+    // public static int ValidateCones(ScsData data, ScsCone cone) {
+    //   using (var marshaller = new CustomMarshaller()) {
+    //     var _data = marshaller.Marshal(data);
+    //     var _cone = marshaller.Marshal(cone);
+    //     return ValidateCones(_data, _cone);
+    //   }
+    // }
 
     #region custom marshalers
 
