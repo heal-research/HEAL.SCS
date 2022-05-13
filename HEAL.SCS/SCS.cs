@@ -348,25 +348,29 @@ namespace SCS {
       return Marshal.PtrToStringAnsi(SCS_Version());
     }
 
-    [DllImport("libscsdir.dll", EntryPoint = "scs_write_data", CharSet = CharSet.Ansi,
-                 CallingConvention = CallingConvention.Cdecl)]
-    private static extern void WriteData(_ScsData data, _ScsCone cone, ScsSettings settings);
+    // TODO wrap for version 3.2.1
+    // [DllImport("libscsdir.dll", EntryPoint = "scs_write_data", CharSet = CharSet.Ansi,
+    //              CallingConvention = CallingConvention.Cdecl)]
+    // private static extern void WriteData(_ScsData data, _ScsCone cone, ScsSettings settings);
     public static void WriteData(ScsData data, ScsCone cone, ScsSettings settings) {
       using (var marshaller = new CustomMarshaller()) {
-        WriteData(marshaller.Marshal(data), marshaller.Marshal(cone), settings);
+        throw new NotImplementedException();
+        // WriteData(marshaller.Marshal(data), marshaller.Marshal(cone), settings);
       }
     }
 
+    // TODO wrap for version 3.2.1
     // [DllImport("libscsdir.dll", EntryPoint = "scs_validate_cones", CharSet = CharSet.Ansi,
     //              CallingConvention = CallingConvention.Cdecl)]
     // private static extern int ValidateCones(_ScsData data, _ScsCone cone);
-    // public static int ValidateCones(ScsData data, ScsCone cone) {
-    //   using (var marshaller = new CustomMarshaller()) {
-    //     var _data = marshaller.Marshal(data);
-    //     var _cone = marshaller.Marshal(cone);
-    //     return ValidateCones(_data, _cone);
-    //   }
-    // }
+    public static int ValidateCones(ScsData data, ScsCone cone) {
+      using (var marshaller = new CustomMarshaller()) {
+        var _data = marshaller.Marshal(data);
+        var _cone = marshaller.Marshal(cone);
+        // return ValidateCones(_data, _cone);
+        throw new NotImplementedException();
+      }
+    }
 
     #region custom marshalers
 

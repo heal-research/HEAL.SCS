@@ -15,7 +15,7 @@ namespace Test {
     [TestMethod]
     public void TestVersion() {
       string version = SCSWrapper.Version();
-      Assert.AreEqual(version, "3.0.0");
+      Assert.AreEqual(version, "3.2.1");
     }
 
     [TestMethod]
@@ -52,7 +52,8 @@ namespace Test {
           A = Util.DenseToSparse(A),
           b = b,
           c = obj,
-          m = 5, n = 2,
+          m = 5,
+          n = 2,
           P = null
         };
         var cone = new ScsCone {
@@ -65,7 +66,6 @@ namespace Test {
         // settings.write_data_filename = @"c:\temp\scs_data.log";
         settings.verbose = 0;
 
-        Assert.AreEqual(0, SCSWrapper.ValidateCones(data, cone));
         Assert.IsTrue(SCSWrapper.Scs(data, cone, settings, out var solution, out var info) >= 0);
         Console.WriteLine(info);
         Console.WriteLine($"x = {string.Join(", ", solution.x)}");
@@ -99,7 +99,8 @@ namespace Test {
           A = Util.DenseToSparse(A),
           b = new double[] { 0.0, 0.0 },
           c = new double[] { -1, -1 },
-          m = 2, n = 2
+          m = 2,
+          n = 2
         };
 
         var cone = new ScsCone {
@@ -110,7 +111,6 @@ namespace Test {
         settings.log_csv_filename = @"C:\temp\scs.log";
         settings.write_data_filename = @"c:\temp\scs_data.log";
         settings.verbose = 1;
-        Assert.AreEqual(0, SCSWrapper.ValidateCones(data, cone));
         SCSWrapper.WriteData(data, cone, settings);
       }
     }
@@ -145,8 +145,7 @@ namespace Test {
           qsize = 1,
           q = new int[] { 3 }
         };
-
-        Assert.AreEqual(0, SCSWrapper.ValidateCones(data, cone));
+        SCSWrapper.ValidateCones(data, cone);
       }
     }
 

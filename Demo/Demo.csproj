@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../HEAL.SCS/HEAL.SCS.csproj" />
-    <PackageReference Include="HEAL.SCS.win-x64" Version="1.0.2-pre2" />
+    <ProjectReference Include="..\HEAL.SCS.win-x64\HEAL.SCS.win-x64.csproj" />
   </ItemGroup>
 
 </Project>
