@@ -1,6 +1,6 @@
 # HEAL.SCS 
 
-Provides a .NET wrapper to SCS.
+Provides a .NET wrapper for SCS.
 
 SCS (splitting conic solver) is a numerical optimization package for solving
 large-scale convex cone problems. This package includes windows binaries of SCS version 3.0.0.
